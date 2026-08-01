@@ -1,5 +1,5 @@
 # Extending-GraphRAG-for-Ontology-Driven-Query-Answering-over-Knowledge-Graphs
-Experimental evaluation of a customized GraphRAG framework for querying Knowledge Graphs with LLMs. The study benchmarks GPT-3.5-turbo and GPT-4o across 34 query types (18 SELECT, 16 ASK), including 17 reasoning-based queries, with each type comprising 25 questions evaluated over 4 prompt levels—resulting in 3,400 experimental configurations.
+Experimental evaluation of a customized GraphRAG framework for querying Knowledge Graphs with LLMs. The study benchmarks GPT-3.5-turbo, GPT-4o, GPT 5.5-Turbo, Mistral Small across 34 query types (18 SELECT, 16 ASK), including 17 reasoning-based queries, with each type comprising 25 questions evaluated over 4 prompt levels—resulting in 13,600 experimental configurations.
 Graph RAG: Microsoft https://github.com/microsoft/graphrag
 
 Query Taxonomy:
@@ -63,7 +63,7 @@ For both structural and reasoning-oriented categories, we include SELECT-based r
 | 33 | Typed Existential Relation | Checking typed relation | `ASK WHERE { @subject @predicate ?object. ?object rdf:type @object.}` |
 | 34 | Subproperty Assertion | Checking subproperty relation | `ASK WHERE { @subject rdfs:subPropertyOf @object.}` |
 
-LLMs utilized: GPT-3.5-Turbo, and GPT-4o
+LLMs utilized: GPT-3.5-Turbo,  GPT-4o, GPT-5.5, Mistrall-Small-Latest
 
 
 

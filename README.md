@@ -1,11 +1,11 @@
 # GraphRAG Framework for Natural Language Question Answering over Knowledge Graphs
-Experimental evaluation of a customized GraphRAG framework for querying Knowledge Graphs with LLMs. The study benchmarks GPT-3.5-turbo, GPT-4o, GPT-5.5, Mistral Small across 34 query types (18 SELECT, 16 ASK), including 17 reasoning-based queries, with each type comprising 25 questions evaluated over 4 prompt levels—resulting in 13,600 experimental configurations.
+Experimental evaluation of a proposed GraphRAG system for querying Knowledge Graphs with LLMs. The study benchmarks GPT-3.5-turbo, GPT-4o, GPT-5.5, Mistral Small across 34 query types (18 SELECT, 16 ASK), including 17 reasoning-based queries, with each type comprising 25 questions evaluated over 4 prompt levels—resulting in 13,600 experimental configurations.
 Graph RAG: Microsoft https://github.com/microsoft/graphrag
 
 Query Taxonomy:
 Structural Queries – focusing on explicit ABox/TBox graph exploration (e.g., instance retrieval, class and property hierarchy navigation)
 Reasoning-Oriented Queries – requiring ontology-aware inference such as subclass propagation, domain/range constraints, subproperty inheritance, and combined ABox–TBox reasoning
-For both structural and reasoning-oriented categories, we include SELECT-based retrieval and ASK-based validation, enabling a comprehensive assessment of our customized Graph RAG framework
+For both structural and reasoning-oriented categories, we include SELECT-based retrieval and ASK-based validation, enabling a comprehensive assessment of our proposed GraphRAG system
 
 ## Standard SELECT Query Taxonomy
 

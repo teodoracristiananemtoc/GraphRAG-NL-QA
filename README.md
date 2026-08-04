@@ -1,4 +1,4 @@
-# GraphRAG Framework for Natural Language Question Answering over Knowledge Graphs
+# A GraphRAG Framework for Natural Language Question Answering over Knowledge Graphs
 Experimental evaluation of a proposed GraphRAG system for querying Knowledge Graphs with LLMs. The study benchmarks GPT-3.5-turbo, GPT-4o, GPT-5.5, Mistral Small across 34 query types (18 SELECT, 16 ASK), including 17 reasoning-based queries, with each type comprising 25 questions evaluated over 4 prompt levels—resulting in 13,600 experimental configurations.
 Graph RAG: Microsoft https://github.com/microsoft/graphrag
 

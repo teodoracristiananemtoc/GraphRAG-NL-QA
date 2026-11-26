@@ -77,7 +77,7 @@ Ensure both variables are set before running the notebooks or Python scripts.
 
 ---
 
-## Dataset: UMLS Knowledge Graph Construction
+## Dataset: UMLS Knowledge Graph Construction file:df_umls.csv
 
 The evaluation employs a **new provided UMLS-based knowledge graph** containing both **TBox (terminological)** and **ABox (assertional)** components, essential for assessing GraphRAG's ability to handle both graph structure and deductive reasoning.
 

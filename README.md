@@ -2,7 +2,107 @@
 Experimental evaluation of a proposed GraphRAG system for querying Knowledge Graphs with LLMs. The study benchmarks GPT-3.5-turbo, GPT-4o, GPT-5.5, Mistral Small across 34 query types (18 SELECT, 16 ASK), including 17 reasoning-based queries, with each type comprising 25 questions evaluated over 4 prompt levels—resulting in 13,600 experimental configurations.
 Graph RAG: Microsoft https://github.com/microsoft/graphrag
 
-Query Taxonomy:
+## Prerequisites & Setup
+
+Before running this project, you need to obtain API keys and configure your environment:
+
+### Required API Keys
+
+1. **OpenAI API Key**
+   - Get your key from: https://platform.openai.com/api-keys
+   - Required for GPT-3.5-turbo, GPT-4o, and GPT-5.5 models
+
+2. **Mistral API Key**
+   - Get your key from: https://console.mistral.ai/api-keys/
+   - Required for Mistral Small-Latest model
+
+### Installation & Running
+
+#### 1. Install Dependencies
+```bash
+pip install graphrag langchain_openai openai mistralai llama-index
+```
+
+#### 2. Set Environment Variables
+Before running any notebook or script, set your API keys as environment variables:
+
+**On Windows (Command Prompt):**
+```cmd
+set OPENAI_API_KEY=your_openai_key_here
+set MISTRAL_API_KEY=your_mistral_key_here
+```
+
+**On Windows (PowerShell):**
+```powershell
+$env:OPENAI_API_KEY="your_openai_key_here"
+$env:MISTRAL_API_KEY="your_mistral_key_here"
+```
+
+**On macOS/Linux (Bash/Zsh):**
+```bash
+export OPENAI_API_KEY=your_openai_key_here
+export MISTRAL_API_KEY=your_mistral_key_here
+```
+
+#### 3. Running the Code
+
+**On Google Colab:**
+1. Upload or open the notebook: `GraphRAG_Framework_for_Natural_Language_Question_Answering_over_Knowledge_Graphs.ipynb`
+2. Set environment variables in the first cell before running:
+   ```python
+   import os
+   os.environ["OPENAI_API_KEY"] = "your_openai_key_here"
+   os.environ["MISTRAL_API_KEY"] = "your_mistral_key_here"
+   ```
+3. Run all cells sequentially from top to bottom
+
+**On Local Machine:**
+```bash
+jupyter notebook
+```
+Then open `initial.ipynb` or the main notebook file.
+
+**Note:** The code will read the `OPENAI_API_KEY` and `MISTRAL_API_KEY` environment variables at runtime through `os.environ["OPENAI_API_KEY"]` and similar calls in the notebook.
+
+### Environment Variables in Code
+
+The code uses these environment variables internally:
+```python
+import os
+api_key = os.environ["OPENAI_API_KEY"]
+mistral_key = os.environ["MISTRAL_API_KEY"]
+```
+
+Ensure both variables are set before running the notebooks or Python scripts.
+
+---
+
+## Dataset: UMLS Knowledge Graph Construction
+
+The evaluation employs a **new provided UMLS-based knowledge graph** containing both **TBox (terminological)** and **ABox (assertional)** components, essential for assessing GraphRAG's ability to handle both graph structure and deductive reasoning.
+
+### Data Source & Processing
+
+The UMLS dataset is constructed using official UMLS RRF (Rich Release Format) files:
+- **MRREL.RRF** – Relations between concepts (predicates)
+- **MRCONSO.RRF** – Concept-to-term mappings (CUI → human-readable terms)
+- **MRSTY.RRF** – Semantic types for each concept
+- **MRDEF.RRF** – Natural language definitions for entities
+
+UMLS concepts (CUIs) are mapped to human-readable terms, producing natural language triples. Semantic type information reconstructs the ontological structure and taxonomy.
+
+### Filtering & Entity Descriptions
+
+To maintain dataset quality and entity completeness:
+- **Structure-preserving filtering** – Retains entity completeness and relational diversity across all predicates
+- **Entity-centric stratification** – Ensures triples involving the same entity across multiple predicates are retained
+- **Definition-based descriptions** – Entity descriptions are derived from MRDEF.RRF concept definitions (avoiding long connection chains that could complicate GraphRAG context attachment)
+
+The final dataset is converted to RDF format and imported into GraphDB, forming a comprehensive KG suitable for evaluating diverse query types across reasoning patterns.
+
+---
+
+## Query Taxonomy
 Structural Queries – focusing on explicit ABox/TBox graph exploration (e.g., instance retrieval, class and property hierarchy navigation)
 Reasoning-Oriented Queries – requiring ontology-aware inference such as subclass propagation, domain/range constraints, subproperty inheritance, and combined ABox–TBox reasoning
 For both structural and reasoning-oriented categories, we include SELECT-based retrieval and ASK-based validation, enabling a comprehensive assessment of our proposed GraphRAG system

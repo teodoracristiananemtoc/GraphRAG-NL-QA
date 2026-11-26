@@ -81,8 +81,6 @@ Ensure both variables are set before running the notebooks or Python scripts.
 
 The evaluation employs a **new provided UMLS-based knowledge graph** containing both **TBox (terminological)** and **ABox (assertional)** components, essential for assessing GraphRAG's ability to handle both graph structure and deductive reasoning.
 
-### Data Source & Processing
-
 The UMLS dataset is constructed using official UMLS RRF (Rich Release Format) files:
 - **MRREL.RRF** – Relations between concepts (predicates)
 - **MRCONSO.RRF** – Concept-to-term mappings (CUI → human-readable terms)
@@ -90,14 +88,6 @@ The UMLS dataset is constructed using official UMLS RRF (Rich Release Format) fi
 - **MRDEF.RRF** – Natural language definitions for entities
 
 UMLS concepts (CUIs) are mapped to human-readable terms, producing natural language triples. Semantic type information reconstructs the ontological structure and taxonomy.
-
-### Filtering & Entity Descriptions
-
-To maintain dataset quality and entity completeness:
-- **Structure-preserving filtering** – Retains entity completeness and relational diversity across all predicates
-- **Entity-centric stratification** – Ensures triples involving the same entity across multiple predicates are retained
-- **Definition-based descriptions** – Entity descriptions are derived from MRDEF.RRF concept definitions (avoiding long connection chains that could complicate GraphRAG context attachment)
-
 The final dataset is converted to RDF format and imported into GraphDB, forming a comprehensive KG suitable for evaluating diverse query types across reasoning patterns.
 
 ---
